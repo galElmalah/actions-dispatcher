@@ -8,6 +8,10 @@
     "prepublish": "npm run test",
     "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/galElmalah/simple-actions-dispatcher"
+  },
   "author": "Gal Elmalah",
   "license": "ISC",
   "devDependencies": {

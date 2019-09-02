@@ -1,6 +1,6 @@
 {
   "name": "simple-action-dispatcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple pub-sub",
   "main": "./dist/index.js",
   "scripts": {

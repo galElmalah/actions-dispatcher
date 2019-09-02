@@ -35,7 +35,7 @@ export class ActionsDispatcher<T> implements Dispatcher<T>{
     }
     this.actions[actionType] = [action];
   }
-  dispatch(actionType: keyof T | string, ...args: any) {
+  dispatch(actionType: keyof T | string, ...args: any[]) {
     if (!this.actions[actionType] && !this.actions.default) {
       throw new TypeError(`No action of type ${actionType} has been registered.`);
     }

@@ -1,9 +1,11 @@
 {
-  "name": "actions-dispatcher",
+  "name": "simple-action-dispatcher",
   "version": "1.0.0",
   "description": "simple pub-sub",
   "main": "./dist/index.js",
   "scripts": {
+    "prepare": "tsc",
+    "prepublish": "npm run test",
     "test": "jest"
   },
   "author": "Gal Elmalah",

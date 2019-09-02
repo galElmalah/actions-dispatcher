@@ -1,4 +1,11 @@
 "use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var ActionsDispatcher = (function () {
     function ActionsDispatcher(defaultAction) {
@@ -6,20 +13,27 @@ var ActionsDispatcher = (function () {
             (this.actions = { default: [defaultAction] }) :
             (this.actions = {});
     }
+    ActionsDispatcher.prototype.setDefaultAction = function (defaultAction) {
+        this.actions.default = [defaultAction];
+    };
     ActionsDispatcher.prototype.register = function (actionType, action) {
         if (typeof action === 'string') {
             this.actions[action] = this.actions[actionType];
             return;
         }
         if (this.actions[actionType]) {
-            this.actions[actionType] = this.actions[actionType].concat([action]);
+            this.actions[actionType] = __spreadArrays(this.actions[actionType], [action]);
             return;
         }
         this.actions[actionType] = [action];
     };
-    ActionsDispatcher.prototype.dispatch = function (actionType, args) {
+    ActionsDispatcher.prototype.dispatch = function (actionType) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
         if (!this.actions[actionType] && !this.actions.default) {
-            throw new Error("No action of type " + actionType + " has been registered.");
+            throw new TypeError("No action of type " + actionType + " has been registered.");
         }
         if (!this.actions[actionType]) {
             var defaultAction = this.actions.default[0];

@@ -58,7 +58,17 @@ describe('ActionsDispatcher', () => {
   })
 
   it('should throw if no action type that matched to the one that was passed and there is no default action as well', () => {
-
     expect(() => dispatcher.dispatch('non-test')).toThrowError(TypeError);
+  })
+
+  it('should not call the default action handler if there a actionType matching to the one passed', () => {
+    const mock = jest.fn()
+    const defaultActionMock = jest.fn();
+    const args = [1, 2, 'test2']
+    dispatcher.setDefaultAction(defaultActionMock)
+    dispatcher.register('test', mock)
+    dispatcher.dispatch('test');
+    expect(mock).toHaveBeenCalled()
+    expect(defaultActionMock).not.toHaveBeenCalled()
   })
 })

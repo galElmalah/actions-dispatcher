@@ -37,7 +37,7 @@ describe('ActionsDispatcher', () => {
     const args = [1, 2, 'test2']
     dispatcher.register('test', mock)
     dispatcher.register('test', mock2)
-    dispatcher.register('test', 'test2')
+    dispatcher.register('test2', 'test')
     dispatcher.dispatch('test2', ...args)
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith(...args)
@@ -51,7 +51,7 @@ describe('ActionsDispatcher', () => {
     const args = [1, 2, 'test2']
     dispatcher.setDefaultAction(mock)
     dispatcher.register('test', mock)
-    dispatcher.register('test', 'test2')
+    dispatcher.register('test2', 'test')
     dispatcher.dispatch('non-test', ...args);
     expect(mock).toHaveBeenCalled()
     expect(mock).toHaveBeenCalledWith(...args)
@@ -67,7 +67,7 @@ describe('ActionsDispatcher', () => {
     const args = [1, 2, 'test2']
     dispatcher.setDefaultAction(defaultActionMock)
     dispatcher.register('test', mock)
-    dispatcher.register('test', 'test2')
+    dispatcher.register('test2', 'test')
     dispatcher.dispatch('test');
     dispatcher.dispatch('test2');
 

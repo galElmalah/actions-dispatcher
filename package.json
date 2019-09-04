@@ -6,7 +6,8 @@
   "scripts": {
     "prepare": "tsc",
     "prepublish": "npm run test",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",

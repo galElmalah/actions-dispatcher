@@ -67,7 +67,10 @@ describe('ActionsDispatcher', () => {
     const args = [1, 2, 'test2']
     dispatcher.setDefaultAction(defaultActionMock)
     dispatcher.register('test', mock)
+    dispatcher.register('test', 'test2')
     dispatcher.dispatch('test');
+    dispatcher.dispatch('test2');
+
     expect(mock).toHaveBeenCalled()
     expect(defaultActionMock).not.toHaveBeenCalled()
   })

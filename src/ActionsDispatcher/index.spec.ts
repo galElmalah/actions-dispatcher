@@ -74,4 +74,11 @@ describe('ActionsDispatcher', () => {
     expect(mock).toHaveBeenCalled()
     expect(defaultActionMock).not.toHaveBeenCalled()
   })
+
+  it('should allow chaining register calls', () => {
+    const mock = jest.fn()
+    dispatcher.register('test', mock).register('test2', 'test')
+    dispatcher.dispatch('test2')
+    expect(mock).toHaveBeenCalled()
+  })
 })

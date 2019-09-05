@@ -18,7 +18,7 @@ var ActionsDispatcher = (function () {
     };
     ActionsDispatcher.prototype.register = function (actionType, action) {
         if (typeof action === 'string') {
-            this.actions[action] = this.actions[actionType];
+            this.actions[actionType] = this.actions[action];
             return;
         }
         if (this.actions[actionType]) {

@@ -1,7 +1,7 @@
 type Action = (args?: any) => any
 
 interface Dispatcher<T> {
-  register(actionType: keyof T, action: string | Action): void;
+  register(actionType: keyof T, action: string | Action): ActionsDispatcher<T>;
   dispatch(actionType: keyof T): void;
 }
 
@@ -30,14 +30,15 @@ export class ActionsDispatcher<T> implements Dispatcher<T>{
   register(actionType: keyof T, action: string | Action) {
     if (typeof action === 'string') {
       this.actions[actionType as keyof T] = this.actions[action];
-      return;
+      return this;
     }
 
     if (this.actions[actionType]) {
       this.actions[actionType] = [...this.actions[actionType], action];
-      return;
+      return this;
     }
     this.actions[actionType] = [action];
+    return this;
   }
 
   dispatch(actionType: keyof T | string, ...args: any[]) {

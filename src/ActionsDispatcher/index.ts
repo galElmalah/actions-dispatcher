@@ -8,7 +8,7 @@ interface Dispatcher<T> {
 
 export class ActionsDispatcher<T> implements Dispatcher<T>{
 
-  private actions: Record<keyof T | string | 'default', Action[]>;
+  private actions: Record<keyof T | string | 'default', Action[] | any>;
 
   constructor(defaultAction?: Action) {
     defaultAction ?
@@ -39,6 +39,17 @@ export class ActionsDispatcher<T> implements Dispatcher<T>{
     }
     this.actions[actionType] = [action];
     return this;
+  }
+
+  unsubscribe(actionType: keyof T) {
+    this.actions[actionType] = [];
+    return this;
+  }
+
+
+  reset() {
+     //@ts-ignore
+     (this.actions = {});
   }
 
   dispatch(actionType: keyof T | string, ...args: any[]) {

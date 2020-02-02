@@ -8,7 +8,7 @@ interface Dispatcher<T> {
 
 export class ActionsDispatcher<T> implements Dispatcher<T>{
 
-  private actions: Record<keyof T | string | 'default', Action[] | any>;
+  private actions: Record<keyof T | string | 'default', Action[] | any[]>;
 
   constructor(defaultAction?: Action) {
     defaultAction ?
@@ -63,7 +63,7 @@ export class ActionsDispatcher<T> implements Dispatcher<T>{
       return;
     }
     const actions = this.actions[actionType];
-    actions.forEach(action => (args ? action(...args) : action()));
+    actions && actions.forEach(action => (args ? action(...args) : action()));
   }
 
 
